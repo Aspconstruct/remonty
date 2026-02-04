@@ -240,11 +240,11 @@ function renderCart() {
     total += sum;
 
     html += `
-      <li>
-        ${item.name} × ${item.qty} = €${sum}
-        <button onclick="removeItem(${i})">❌</button>
-      </li>
-    `;
+    <li>
+${item.name} x ${item.qty} = €${sum}
+<button onclick="removeItem(${i})">X</button>
+</li>
+`;
   });
 document.getElementById("cart").innerHTML =
   "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
@@ -255,12 +255,11 @@ document.getElementById("cartCount").innerText =
 
 }
 renderCart();
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
 
-function clearCart() {
-  if (confirm("Wyczyścić koszyk?")) {
-    cart = [];
-    saveCart();
-    renderCart();
   }
 }
 </script>
