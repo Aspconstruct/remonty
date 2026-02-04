@@ -146,6 +146,22 @@ WhatsApp
 </button>
 
 </section>
+<section>
+<h2>Sklep</h2>
+
+<div class="card">
+<h3>Farba premium</h3>
+<p>45€</p>
+<button onclick="addToCart('Farba', 45)">Kup</button>
+</div>
+
+<div class="card">
+<h3>Płytki</h3>
+<p>30€ / m2</p>
+<button onclick="addToCart('Płytki', 30)">Kup</button>
+</div>
+
+</section>
 
 <section>
 <h2>Lokalizacja</h2>
@@ -159,6 +175,14 @@ src="https://maps.google.com/maps?q=Antwerp&t=&z=13&ie=UTF8&iwloc=&output=embed"
 <footer>
 © 2026 Remonty Andrzej
 </footer>
+<script>
+let cart = 0;
+
+function addToCart(name, price) {
+  cart += price;
+  alert(name + " dodano do koszyka\nSuma: " + cart + "€");
+}
+</script>
 
 </body>
-</ht
+</html
