@@ -202,12 +202,18 @@ function renderCart() {
     "<ul>" + list + "</ul><b>Suma: €" + total + "</b>";
 }
 </script>
-
 <script>
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 function addToCart(name, price) {
-  cart.push({ name: name, price: price });
+  let found = cart.find(item => item.name === name);
+
+  if (found) {
+    found.qty++;
+  } else {
+    cart.push({ name: name, price: price, qty: 1 });
+  }
+
   saveCart();
   renderCart();
 }
@@ -227,10 +233,12 @@ function renderCart() {
   let html = "";
 
   cart.forEach(function(item, i) {
-    total += item.price;
+    let sum = item.price * item.qty;
+    total += sum;
+
     html += `
       <li>
-        ${item.name} — €${item.price}
+        ${item.name} × ${item.qty} = €${sum}
         <button onclick="removeItem(${i})">❌</button>
       </li>
     `;
