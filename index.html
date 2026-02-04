@@ -153,6 +153,9 @@ WhatsApp
 <section>
 <h2>Koszyk</h2>
 <div id="cart"></div>
+  <button onclick="clearCart()">Wyczyść koszyk</button>
+<p id="cartCount"></p>
+
 </section>
 
 <div class="card">
@@ -243,13 +246,25 @@ function renderCart() {
       </li>
     `;
   });
+document.getElementById("cart").innerHTML =
+  "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
 
-  document.getElementById("cart").innerHTML =
-    "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
+let count = cart.reduce((a, b) => a + b.qty, 0);
+document.getElementById("cartCount").innerText =
+  "Produkty w koszyku: " + count;
+
 }
-
 renderCart();
+
+function clearCart() {
+  if (confirm("Wyczyścić koszyk?")) {
+    cart = [];
+    saveCart();
+    renderCart();
+  }
+}
 </script>
+
 
 </body>
 </html
