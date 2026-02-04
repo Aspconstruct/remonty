@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Remonty Andrzej</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 body {
   font-family: Arial;
@@ -20,16 +22,13 @@ header {
 
 section {
   padding: 40px;
+  background: white;
+  margin: 20px;
+  border-radius: 10px;
 }
 
 h2 {
   margin-top: 0;
-}
-
-.gallery img {
-  width: 30%;
-  margin: 1%;
-  border-radius: 8px;
 }
 
 button {
@@ -41,11 +40,44 @@ button {
   cursor: pointer;
 }
 
+.gallery img {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background: #eee;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+}
+
 footer {
   background: #222;
   color: white;
   text-align: center;
   padding: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+@media (max-width: 600px) {
+  section {
+    margin: 10px;
+    padding: 20px;
+  }
 }
 </style>
 </head>
@@ -53,22 +85,38 @@ footer {
 <body>
 
 <header>
-<h1>Aspconstruct Properity Services</h1>
+<h1>Remonty Andrzej</h1>
 <p>Profesjonalne remonty mieszkań</p>
 </header>
 
 <section>
 <h2>O nas</h2>
-<p>Kompleksowe remonty mieszkań, łazienek i apartamentów.
-Działamy szybko, czysto i profesjonalnie.</p>
-
-<button onclick="alert('Kontakt: 123-456-789')">
-Zamów wycenę
-</button>
+<p>Kompleksowe remonty mieszkań, łazienek i apartamentów.</p>
+<button onclick="window.location='#kontakt'">Zamów wycenę</button>
 </section>
 
 <section>
-<h2>Nasze realizacje</h2>
+<h2>Cennik</h2>
+<div class="pricing">
+<div class="card">
+<h3>Remont łazienki</h3>
+<p>od 4500€</p>
+</div>
+
+<div class="card">
+<h3>Malowanie</h3>
+<p>od 8€/m²</p>
+</div>
+
+<div class="card">
+<h3>Podłogi</h3>
+<p>od 25€/m²</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Galeria</h2>
 <div class="gallery">
 <img src="https://picsum.photos/400/300?1">
 <img src="https://picsum.photos/400/300?2">
@@ -77,9 +125,35 @@ Zamów wycenę
 </section>
 
 <section>
+<h2>Opinie klientów</h2>
+<p>⭐️⭐️⭐️⭐️⭐️ Super robota! — Jan</p>
+<p>⭐️⭐️⭐️⭐️⭐️ Szybko i czysto — Anna</p>
+</section>
+
+<section id="kontakt">
 <h2>Kontakt</h2>
-<p>Telefon: 123-456-789</p>
-<p>Email: remonty@example.com</p>
+
+<form onsubmit="alert('Wysłano! Oddzwonimy.'); return false;">
+<input placeholder="Imię">
+<input placeholder="Telefon">
+<textarea placeholder="Opis remontu"></textarea>
+<button>Wyślij</button>
+</form>
+
+<br>
+<button onclick="window.open('https://wa.me/48123456789')">
+WhatsApp
+</button>
+
+</section>
+
+<section>
+<h2>Lokalizacja</h2>
+<iframe
+width="100%"
+height="300"
+src="https://maps.google.com/maps?q=Antwerp&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
 </section>
 
 <footer>
@@ -87,4 +161,4 @@ Zamów wycenę
 </footer>
 
 </body>
-</html>
+</ht
