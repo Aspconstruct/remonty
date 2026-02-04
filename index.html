@@ -182,17 +182,10 @@ src="https://maps.google.com/maps?q=Antwerp&t=&z=13&ie=UTF8&iwloc=&output=embed"
 © 2026 Remonty Andrzej
 </footer>
 <script>
-let cart = 0;
-
-function addToCart(name, price) {
-  cart += price;
-  alert(name + " dodano do koszyka\nSuma: " + cart + "€");
-}
-<script>
 let cart = [];
 
 function addToCart(name, price) {
-  cart.push({ name, price });
+  cart.push({ name: name, price: price });
   renderCart();
 }
 
@@ -200,15 +193,16 @@ function renderCart() {
   let total = 0;
   let list = "";
 
-  cart.forEach(item => {
+  cart.forEach(function(item) {
     total += item.price;
-    list += `<li>${item.name} — €${item.price}</li>`;
+    list += "<li>" + item.name + " - €" + item.price + "</li>";
   });
 
   document.getElementById("cart").innerHTML =
     "<ul>" + list + "</ul><b>Suma: €" + total + "</b>";
 }
 </script>
+
 
 </body>
 </html
