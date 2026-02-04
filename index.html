@@ -152,7 +152,7 @@ WhatsApp
 <h2>Sklep</h2>
 <section>
 <h2>Koszyk</h2>
-<div id="cart">Pusty</div>
+<div id="cart"></div>
 </section>
 
 <div class="card">
@@ -203,6 +203,45 @@ function renderCart() {
 }
 </script>
 
+<script>
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+function addToCart(name, price) {
+  cart.push({ name: name, price: price });
+  saveCart();
+  renderCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function renderCart() {
+  let total = 0;
+  let html = "";
+
+  cart.forEach(function(item, i) {
+    total += item.price;
+    html += `
+      <li>
+        ${item.name} — €${item.price}
+        <button onclick="removeItem(${i})">❌</button>
+      </li>
+    `;
+  });
+
+  document.getElementById("cart").innerHTML =
+    "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
+}
+
+renderCart();
+</script>
 
 </body>
 </html
