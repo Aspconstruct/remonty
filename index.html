@@ -242,8 +242,6 @@ function renderCart() {
     html += "<li>" + item.name + " x " + item.qty + " = €" + sum + " <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
 });
 
-
-  });
 document.getElementById("cart").innerHTML =
   "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
 
