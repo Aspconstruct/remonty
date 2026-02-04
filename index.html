@@ -150,6 +150,10 @@ WhatsApp
 </button>
 
 <h2>Sklep</h2>
+<section>
+<h2>Koszyk</h2>
+<div id="cart">Pusty</div>
+</section>
 
 <div class="card">
 <h3>Farba premium</h3>
@@ -183,6 +187,27 @@ let cart = 0;
 function addToCart(name, price) {
   cart += price;
   alert(name + " dodano do koszyka\nSuma: " + cart + "€");
+}
+</script>
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  renderCart();
+}
+
+function renderCart() {
+  let total = 0;
+  let list = "";
+
+  cart.forEach(item => {
+    total += item.price;
+    list += `<li>${item.name} — €${item.price}</li>`;
+  });
+
+  document.getElementById("cart").innerHTML =
+    "<ul>" + list + "</ul><b>Suma: €" + total + "</b>";
 }
 </script>
 
