@@ -185,7 +185,8 @@ src="https://maps.google.com/maps?q=Antwerp&t=&z=13&ie=UTF8&iwloc=&output=embed"
 © 2026 Remonty Andrzej
 </footer>
 <script>
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -205,8 +206,12 @@ function renderCart() {
     let sum = item.price * item.qty;
     total += sum;
 
-    html += "<li>" + item.name + " x " + item.qty + " = €" + sum +
-    " <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
+   html += "<li>" + item.name +
+" <button onclick='changeQty(" + i + ",-1)'>-</button> " +
+item.qty +
+" <button onclick='changeQty(" + i + ",1)'>+</button> = €" + sum +
+" <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
+
   });
 
   document.getElementById("cart").innerHTML =
@@ -218,7 +223,12 @@ function removeItem(index) {
   saveCart();
   renderCart();
 }
-
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty <= 0) cart.splice(index,1);
+  saveCart();
+  renderCart();
+}
 function clearCart() {
   if (confirm("Wyczyścić koszyk?")) {
     cart = [];
