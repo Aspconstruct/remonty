@@ -187,49 +187,13 @@ src="https://maps.google.com/maps?q=Antwerp&t=&z=13&ie=UTF8&iwloc=&output=embed"
 <script>
 let cart = [];
 
-function addToCart(name, price) {
-  cart.push({ name: name, price: price });
-  renderCart();
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
-
-function renderCart() {
-  let total = 0;
-  let list = "";
-
-  cart.forEach(function(item) {
-    total += item.price;
-    list += "<li>" + item.name + " - €" + item.price + "</li>";
-  });
-
-  document.getElementById("cart").innerHTML =
-    "<ul>" + list + "</ul><b>Suma: €" + total + "</b>";
-}
-</script>
-let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 function addToCart(name, price) {
-  let found = cart.find(item => item.name === name);
-
-  if (found) {
-    found.qty++;
-  } else {
-    cart.push({ name: name, price: price, qty: 1 });
-  }
-
+  cart.push({ name, price, qty: 1 });
   saveCart();
-  renderCart();
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
-  saveCart();
-  renderCart();
-}
-<script>
-let cart = [];
-
-function addItem(name, price) {
-  cart.push({ name: name, price: price, qty: 1 });
   renderCart();
 }
 
@@ -241,8 +205,8 @@ function renderCart() {
     let sum = item.price * item.qty;
     total += sum;
 
-    html += "<li>" + item.name + " - €" + sum +
-      " <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
+    html += "<li>" + item.name + " x " + item.qty + " = €" + sum +
+    " <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
   });
 
   document.getElementById("cart").innerHTML =
@@ -251,20 +215,19 @@ function renderCart() {
 
 function removeItem(index) {
   cart.splice(index, 1);
+  saveCart();
   renderCart();
 }
 
 function clearCart() {
   if (confirm("Wyczyścić koszyk?")) {
     cart = [];
+    saveCart();
     renderCart();
   }
 }
 
 renderCart();
 </script>
-
-
-
 </body>
 </html
