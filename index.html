@@ -229,45 +229,39 @@ function removeItem(index) {
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+<script>
+let cart = [];
+
 function renderCart() {
-  let total = 0;
-  let html = "";
+    let total = 0;
+    let html = "";
 
-  cart.forEach(function(item, i) {
-    let sum = item.price * item.qty;
-    total += sum;
+    cart.forEach(function(item, i) {
+        let sum = item.price * item.qty;
+        total += sum;
 
-    html += '<li>' + item.name + ' x ' + item.qty + ' = €' + sum +
-            ' <button onclick="removeItem(' + i + ')">Usuń</button></li>';
-  });
+        html += "<li>" + item.name + " x " + item.qty + " = €" + sum +
+        " <button onclick='removeItem(" + i + ")'>Usuń</button></li>";
+    });
 
-  document.getElementById("cart").innerHTML =
-    "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
-
-  let count = cart.reduce((a, b) => a + b.qty, 0);
-  document.getElementById("cartCount").innerText =
-    "Produkty w koszyku: " + count;
-
-
+    document.getElementById("cart").innerHTML =
+        "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
 }
+
 function removeItem(index) {
-  cart.splice(index, 1);
-  saveCart();
-  renderCart();
+    cart.splice(index, 1);
+    renderCart();
+}
+
+function clearCart() {
+    if (confirm("Wyczyścić koszyk?")) {
+        cart = [];
+        renderCart();
+    }
 }
 
 renderCart();
 
-function clearCart() {
-  if (confirm("Wyczyścić koszyk?")) {
-    cart = [];
-    saveCart();
-    renderCart();
-
-  }
-}
 </script>
-
-
 </body>
 </html
