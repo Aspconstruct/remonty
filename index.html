@@ -239,9 +239,9 @@ cart.forEach(function(item, i) {
   let sum = item.price * item.qty;
   total += sum;
 
-  html += "<li>" + item.name + " x " + item.qty + " = €" + sum +
-  " <button onclick=\"removeItem(" + i + ")\">Usuń</button></li>";
+  html += "<li>" + item.name + " x " + item.qty + " = €" + sum + " <button onclick=\"removeItem(" + i + ")\">Usuń</button></li>";
 });
+
 
 document.getElementById("cart").innerHTML =
   "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
