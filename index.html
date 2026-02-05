@@ -140,7 +140,9 @@ input, textarea {
 <textarea name="message" placeholder="Opis remontu"></textarea>
 
 <button type="submit">Wyślij</button>
+<textarea></textarea>
 
+<input type="hidden" id="cartData" name="koszyk">
 </form>
 
 <br>
@@ -214,8 +216,10 @@ item.qty +
 
   });
 
-  document.getElementById("cart").innerHTML =
-    "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
+ document.getElementById("cart").innerHTML =
+  "<ul>" + html + "</ul><b>Suma: €" + total + "</b>";
+
+document.getElementById("cartData").value = JSON.stringify(cart);
 }
 
 function removeItem(index) {
